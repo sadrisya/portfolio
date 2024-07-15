@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+<style>
+body {
+	margin: 0;
+	font-family: 'Open Sans', sans-serif, Helvetica, Arial, sans-serif;
+}
+
+.mcafeeHeader {
+	background-color: #060606;
+}
+
+.mcafeeHeader .topnav {
+	display: flex;
+	line-height: 2.8;
+	overflow: hidden;
+	background-color: #060606;
+	margin: 0 auto;
+	padding: 0 5% 2px;
+	max-width: 1500px;
+}
+
+.mcafeeHeader .topnav a {
+	float: left;
+	display: block;
+	color: #ffff;
+	text-align: center;
+	padding: 20px 15px;
+	text-decoration: none;
+	font-size: 16px;
+	margin-top: 0px;
+}
+
+.mcafeeHeader .active {
+	background-color: #04AA6D;
+	color: white;
+}
+
+#navItems {
+	display: flex;
+	font-size: 16px;
+	margin: 0 160px;
+	padding: 0;
+	list-style-type: none;
+}
+
+.mcafeeHeader .topnav .icon {
+	display: none;
+	-webkit-transition: all .3s linear;
+	transition: all .3s linear;
+	margin: 0;
+	position: relative;
+	float: right;
+	-webkit-transition: all .3s linear;
+	transition: all .3s linear;
+	display: none;
+}
+
+.mcafeeHeader .logo-wrap {
+	width: 108px;
+	flex: 0 0 108px;
+}
+
+.mcafeeHeader .nav-wrap {
+	flex: 1;
+	margin-left: 4%;
+}
+
+.mcafeeHeader .dropdown {
+	float: left;
+	overflow: hidden;
+	margin-top: 15px;
+}
+
+
+.mcafeeHeader .dropdown .dropbtn {
+	cursor: pointer;
+	font-size: 16px;
+	border: none;
+	outline: none;
+	color: white;
+	padding: 16px 16px;
+	background-color: inherit;
+	font-family: inherit;
+	margin: 0;
+}
+
+.mcafeeHeader .dropdown.open #dropbtnAbout, .mcafeeHeader .dropdown.open #dropbtnSupport{
+	position: relative;
+}
+
+.mcafeeHeader .dropdown.open #dropbtnAbout:after, .mcafeeHeader .dropdown.open #dropbtnSupport:after{
+	content: '';
+    position: absolute;
+    left: 24%;
+    top: 83%;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #262626;
+    clear: both;
+}
+
+.mcafeeHeader .fa {
+	vertical-align: 2px;
+	font-size: 10px;
+}
+
+.mcafeeHeader .dropdown-content {
+	display: none;
+	margin-top: 17px;
+	position: absolute;
+	left: 0;
+	width: 160px;
+	background-color: #f9f9f9;
+	width: 100%;
+	z-index: 1;
+}
+
+.mcafeeHeader .first-dropdown {
+	margin-top: 0px;
+	display: none;
+	opacity: -1;
+	transition: 6s;
+	-webkit-transition: all .6s;
+	-moz-transition: all .6s;
+	-ms-transition: all .6s;
+	-o-transition: all .6s;
+	transition: all .6s;
+}
+
+.mcafeeHeader .dropdownMain {
+	display: block;
+	opacity: 1;
+}
+
+.mcafeeHeader .first-dropdown .row {
+	padding-left: 18%;
+	padding-right: 18%;
+}
+
+.mcafeeHeader .dropdown-content a {
+	float: none;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+@media screen and (max-width: 1024px) {
+	.mcafeeHeader .first-dropdown {
+		margin-left: 100%;
+		position: fixed !important;
+	}
+}
+
+.mcafeeHeader .first-dropdown-fixer {
+	margin-left: 0%;
+}
+
+.mcafeeHeader .moreToggle {
+	margin-left: -26.5em !important;
+}
+
+.mcafeeHeader .show {
+	display: block !important;
+}
+
+.mcafeeHeader .topnav a:hover,
+.dropdown:hover .dropbtn {
+	color: rgb(207, 207, 207);
+}
+
+.mcafeeHeader .dropdown-toggle {
+	margin-top: 26px !important;
+	color: #fff;
+	text-decoration: none;
+	white-space: nowrap;
+	display: flex;
+	align-items: center;
+	padding: 0px !important;
+	cursor: pointer;
+}
+
+.mcafeeHeader #tnav9 .dropdown-toggle span {
+	display: none;
+}
+
+.mcafeeHeader #tnav9 .dropdown-toggle svg {
+	-webkit-transition: all .3s ease all;
+	transition: all .3s ease all;
+	transition: .3s ease all;
+}
+
+.mcafeeHeader .moreTrans svg {
+	transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+}
+
+.mcafeeHeader .dropdown-toggle:after {
+	content: '';
+	background-image: url(/content/dam/en-us/test-assets/header-redesign/nav-arrow.svg);
+	height: 5px;
+	width: 7px;
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+
+.mcafeeHeader .dropdown-more {
+	display: none;
+	margin-top: 1px;
+	position: absolute;
+	left: 75%;
+	width: 160px;
+	background-color: #262626;
+	width: 25%;
+	box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
+	z-index: 1;
+	height: 100vh;
+}
+
+.mcafeeHeader .dropdown-more .column {
+	width: 100%;
+	padding: 77px 27px;
+}
+
+.mcafeeHeader .dropdown-more .column a:not(:last-child) {
+	border-bottom: 1px #6a6767 solid;
+}
+
+.mcafeeHeader .dropMenu .column ul>li:not(:last-child) {
+	border-bottom: 1px #6a6767 solid;
+}
+
+.mcafeeHeader .dropMenu .column ul>li>a {
+	margin-left: 17px;
+}
+
+.mcafeeHeader .dropMenu {
+	height: 100%;
+	width: 23%;
+	left: 100%;
+	position: fixed;
+	margin-top: 0px;
+	transition: 2s;
+	display: block;
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	-ms-transition: all .3s;
+	-o-transition: all .3s;
+	transition: all .3s;
+}
+
+.mcafeeHeader .menuTrans {
+	left: 77% !important;
+}
+
+.mcafeeHeader .dropMenu .row {
+	height: 100%;
+	width: 101%;
+	padding: 74px 2px;
+}
+
+.mcafeeHeader .dropMenu .column {
+	width: 100%;
+}
+
+.mcafeeHeader .dropMenu .column ul {
+	padding-left: 0px;
+	list-style-type: none;
+}
+
+@media screen and (max-width: 1024px) {
+	.mcafeeHeader .dropMenu {
+		padding: 0% 41% 0% 0%;
+		width: 100%;
+		position: fixed !important;
+		margin-left: 4%;
+		/* margin-top: -186px !important; */
+		background-color: #343333;
+	}
+	.mcafeeHeader .dropMenuRes {
+		position: relative !important;
+		margin-left: -104% !important;
+	}
+	.mcafeeHeader .dropMenu .column ul>li {
+		border-bottom: none !important;
+		margin-bottom: 36px;
+	}
+	.mcafeeHeader .dropMenu .row {
+		height: 100vh;
+		margin-top: 0px;
+		padding: 0% 0%;
+	}
+}
+
+.mcafeeHeader .bar1,
+.bar2,
+.bar3 {
+	width: 27px;
+	height: 1px;
+	background-color: #ffff;
+	margin: 7px 0;
+	transition: 0.4s;
+	-webkit-transition: all .5s linear;
+	transition: all .5s linear;
+}
+
+.mcafeeHeader .change .bar1 {
+	-webkit-transform: rotate(-45deg) translate(-4px, 6px);
+	transform: rotate(-45deg) translate(-4px, 6px);
+}
+
+.mcafeeHeader .change .bar2 {
+	opacity: 0;
+}
+
+.mcafeeHeader .change .bar3 {
+	-webkit-transform: rotate(45deg) translate(-5px, -7px);
+	transform: rotate(45deg) translate(-5px, -7px);
+}
+
+@media screen and (max-width: 1024px) {
+	.mcafeeHeader .topnav a,
+	.dropdown .dropbtn,
+	.icons-wrap {
+		display: none;
+	}
+	.mcafeeHeader .topnav a.icon {
+		float: right;
+		display: block;
+	}
+	.mcafeeHeader .topnav .icon {
+		position: absolute;
+		right: 10px;
+		top: 0px;
+		float: right;
+		display: block;
+		padding: 15px;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.mcafeeHeader .topnav.responsive {
+		background-color: #333 !important;
+		height: 100vh;
+		position: relative;
+	}
+	.mcafeeHeader .topnav.responsive .icon {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	.mcafeeHeader .navItem {
+		margin: 0px 40px;
+		padding: 0px 17px !important;
+	}
+	.mcafeeHeader .topnav.responsive a {
+		font-size: 1.5em;
+		float: none;
+		display: block;
+		text-align: left;
+	}
+	.mcafeeHeader .topnav.responsive a:not(:first-child) {
+		padding: 0px 20px;
+		margin-top: 0px;
+	}
+	.mcafeeHeader .topnav.responsive .dropdown {
+		float: none;
+		margin: -14px 41px;
+	}
+	.mcafeeHeader .topnav.responsive .dropdown-content {
+		position: relative;
+	}
+	.mcafeeHeader .topnav.responsive .dropdown .dropbtn {
+		font-size: 1.5em;
+		display: block;
+		width: 100%;
+		text-align: left;
+		margin-top: 10px;
+	}
+	.mcafeeHeader .logo-wrap {
+		left: 20px;
+	}
+	.mcafeeHeader .dropdown-content {
+		min-height: calc(95vh - 40px);
+		margin-top: 0px;
+	}
+	.mcafeeHeader .row {
+		background-color: #333 !important;
+		position: relative;
+		display: block !important;
+	}
+	.mcafeeHeader .icons-wrap {
+		line-height: 1.5;
+		display: block;
+		margin: 0;
+		position: absolute;
+		top: 6.50rem;
+		left: 30rem;
+	}
+
+	.mcafeeHeader .logo-wrap .logo {
+		margin: 1px 0px 14px 24px !important;
+	}
+}
+
+.mcafeeHeader .logo-wrap .logo {
+	display: block;
+	text-indent: -999px;
+	display: block;
+	height: 22px;
+	width: 108px;
+	margin: -6px 0;
+}
+
+@media screen and (max-width: 1024px) {
+	.mcafeeHeader .column {
+		height: 262px !important;
+		width: 100% !important;
+		padding: 0px !important;
+	}
+	.mcafeeHeader .column:not(:last-child) {
+		border-bottom: 1px #6a6767 solid;
+	}
+	.mcafeeHeader .column h3 {
+		border: none !important;
+		font-size: 18px !important;
+		margin-bottom: 0px !important;
+		padding: 0px 0px !important;
+	}
+	.mcafeeHeader .column a {
+		padding-left: 0px !important;
+		font-size: 16px !important;
+	}
+}
+
+.mcafeeHeader .row {
+	display: flex;
+	background-image: none;
+	background-color: #262626;
+	color: white;
+	padding: 30px 63px;
+}
+
+.mcafeeHeader .column {
+	float: left;
+	width: 33.33%;
+	height: 391px
+}
+
+.mcafeeHeader .column h3 {
+	border-bottom: 1px solid #a90202;
+	padding-bottom: 7px;
+	font-size: 17px;
+	margin: 0 50px 30px 0;
+}
+
+.mcafeeHeader .column a {
+	float: none;
+	color: white;
+	padding: 0px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+.mcafeeHeader .column a:hover {
+	background-color: none;
+}
+
+.mcafeeHeader .row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.mcafeeHeader .icons-wrap {
+	margin-right: 50px;
+}
+
+.mcafeeHeader .entlink {
+	margin-top: 19px !important;
+	padding: 0px 40px !important;
+}
+
+.mcafeeHeader #loginbtn {
+	border: 1px solid #fff;
+	border-radius: 26px;
+	padding: 6px 34px;
+	margin-right: 28px;
+	margin-top: 25px;
+	display: inline-block;
+	text-align: center;
+}
+
+.mcafeeHeader #tnav9 {
+	padding-bottom: 0;
+	background: none;
+	margin-top: 0px !important;
+}
+
+@media screen and (max-width: 1024px) {
+	.mcafeeHeader #tnav9 .dropdown-toggle {
+		font-size: 1.2em;
+		margin: 0;
+		margin-top: 0px !important;
+	}
+	.mcafeeHeader .entlink {
+		padding: 0px;
+		margin: 0px;
+	}
+	.mcafeeHeader #tnav9 .dropdown-toggle span {
+		margin-top: 20px;
+		font-size: 23px;
+		padding: 15px 0px;
+		display: inline-block;
+	}
+	.mcafeeHeader #tnav9 .dropdown-toggle svg {
+		display: none;
+	}
+	.mcafeeHeader .open .dropdown-menu {
+		padding-left: 0;
+		overflow: hidden;
+		padding-right: 0;
+		min-width: 320px;
+		margin-top: 20px;
+		background: #262626;
+		padding: 1rem 5rem 1rem 1rem;
+	}
+	.mcafeeHeader .dropdown-menu.show li {
+		border-bottom: 1px solid #939598;
+		padding: 7px;
+	}
+}
+
+.mcafeeHeader .close-slide-menu {
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: #fff;
+	padding: 20px;
+	font-size: 40px;
+	line-height: 15px;
+	cursor: pointer;
+	font-family: serif;
+	margin-top: 1px;
+}
+
+.mcafeeHeader .moreSvg {
+	transition: width 2s, height 2s, transform 2s;
+	-webkit-transition: width 2s, height 2s, transform 2s;
+}
+</style>
+<div class="mcafeeHeader">
+	<div class="topnav" id="myTopnav">
+		<div class="nav-wrap" id="navWrap">
+			<div class="logo-wrap"><a data-navelement="companylogo" data-pagesection="top nav" class="logo" style="background: url('https://www.mcafee.com/content/dam/consumer/en/company-logo/logo-white.svg') no-repeat center bottom;">McAfee</a></div>
+			<div id="navItems"> <a class="navItem" href="https://www.mcafee.com/en-us/antivirus/mcafee-total-protection.html" target="_self">Total Protection</a> <a class="navItem" href="https://www.mcafee.com/en-us/antivirus.html" target="_self">Antivirus</a> <a class="navItem" href="https://www.mcafee.com/en-us/identity-theft/protection.html" target="_self">VPN</a>
+				<div class="dropdown">
+					<button class="dropbtn dropbtnAbout" id="dropbtnAbout" onclick="macfee_DropClick('myDropdown')">About <i class="fa fal fa-angle-down " id="uparrow1"></i> </button>
+					<div class="dropdown-content first-dropdown" id="myDropdown">
+						<div class="row">
+							<div class="column">
+								<h3>Our Company</h3> <a href="https://www.mcafee.com/en-us/consumer-corporate/about/awards.html" target="_self">Awards and Reviews</a> <a href="https://www.mcafee.com/en-us/consumer-corporate/about.html" target="_self">About Us</a> <a href="https://www.mcafee.com/en-us/consumer-corporate/about.html#executive-team" target="_self">Executive Team</a> <a href="https://www.mcafee.com/en-us/consumer-corporate/newsroom.html" target="_self">Newsroom</a> </div>
+							<div class="column">
+								<h3>Our Efforts</h3> <a href="https://www.mcafee.com/en-us/consumer-corporate/inclusion-diversity.html" target="_self" rel="noopener">Inclusion &amp; Diversity</a> <a href="https://www.mcafee.com/en-us/consumer-corporate/integrity-ethics.html" target="_self" rel="noopener">Integrity &amp; Ethics</a> <a href="https://www.mcafee.com/en-us/consumer-support/policy/legal/public-policy.html" target="_self" rel="noopener">Public Policy</a> <a href="https://www.mcafee.com/en-us/consumer-corporate/mcafee-labs.html" target="_self" rel="noopener">McAfee Labs Threat Center</a> </div>
+							<div class="column">
+								<h3>Join Us</h3> <a class="dropdown-item" href="https://careers.mcafee.com/" target="_self" rel="noopener">Search Job Openings</a> <a class="dropdown-item" href="https://careers.mcafee.com/life-at-mcafee" target="_self" rel="noopener">Life at McAfee</a> <a class="dropdown-item" href="https://careers.mcafee.com/our-teams" target="_self" rel="noopener">Our Teams</a> <a class="dropdown-item" href="https://careers.mcafee.com/our-locations" target="_self" rel="noopener">Our Locations</a> </div>
+						</div>
+					</div>
+				</div>
+				<div class="dropdown">
+					<button class="dropbtn dropbtnSupport" id="dropbtnSupport" onclick="macfee_DropClick('myDropdownSupport')">Support <i class="fa fa-angle-down" id="uparrow2"></i> </button>
+					<div class="dropdown-content first-dropdown" id="myDropdownSupport">
+						<div class="row">
+							<div class="column">
+								<h3>Help</h3> <a class="dropdown-item" href="https://service.mcafee.com/webcenter/portal/cp" target="_self" rel="noopener">Consumer Support</a> <a class="dropdown-item" href="https://forums.mcafee.com/" target="_self" rel="noopener">Community</a> <a class="dropdown-item" href="https://www.mcafee.com/en-us/consumer-support/activate-product-key.html">Activate your Retail Card</a> </div>
+							<div class="column">
+								<h3>Learn more about Security</h3> <a class="dropdown-item" href="https://www.mcafee.com/en-us/antivirus/free.html" target="_self" rel="noopener">Free Antivirus Trial</a> <a class="dropdown-item" href="https://www.mcafee.com/en-us/antivirus/malware.html" target="_self" rel="noopener">Malware</a> <a class="dropdown-item" href="https://www.mcafee.com/en-us/antivirus/firewall.html" target="_self" rel="noopener">Firewall</a> <a class="dropdown-item" href="https://www.mcafee.com/en-us/safe-browser/mcafee-webadvisor.html" target="_self" rel="noopener">Safe Browser</a> <a class="dropdown-item" href="https://www.mcafee.com/en-us/vpn/android-iphone.html" target="_self" rel="noopener">VPN for Phones</a> <a class="dropdown-item" href="https://www.mcafee.com/en-us/parental-controls.html" target="_self" rel="noopener">Parental Controls</a> </div>
+							<div class="column">
+								<h3>More Resources</h3> <a class="dropdown-item" href="https://www.mcafee.com/en-us/consumer-support/2020-mobile-threat-report.html" target="_self" rel="noopener">2020 Mobile Threat Report</a> <a class="dropdown-item" href="https://www.mcafee.com/en-us/consumer-support/press-pause-on-risky-downloads.html">Press Pause on Risky Downloads</a> <a class="dropdown-item" href="https://www.mcafee.com/en-us/consumer-support/2020-most-dangerous-celebrity.html">Most Dangerous Celebrity Searches</a> <a class="dropdown-item" href="https://www.mcafee.com/en-us/for-home/from-home.html">Supporting You and Your Community</a> <a class="dropdown-item" href="https://www.mcafee.com/en-us/for-home/from-home.html">Hackable? Podcast</a> <a class="dropdown-item" href="https://www.mcafee.com/en-us/consumer-support/safety-tips.html">Safety Tips</a> </div>
+						</div>
+					</div>
+				</div> <a class="navItem" href="https://ir.mcafee.com/" target="_self">Investors</a>
+				<div class="icon" id="menuIcon" onclick="macfee_MainMenuClick()">
+					<div class="bar1"></div>
+					<div class="bar2"></div>
+					<div class="bar3"></div>
+				</div>
+			</div>
+		</div>
+		<div class="icons-wrap">
+			<div>
+				<a  href="https://www.mcafee.com/blogs" class="entlink" target="_self">Blog</a>
+				<a id="loginbtn" href="https://home.mcafee.com/Secure/MyAccount/DashBoard.aspx?culture=en-us" class="entlink">Login</a>
+				<li id="tnav9" class="dropdown open show"> <a class="dropdown-toggle" id="moreIcon" onclick=" macfee_MoreOpenFunction();"><span>More <i class="fa fal fa-angle-right" id="moreIconFa"></i></span> 
+            <svg xmlns="http://https://www.w3.org/2000/svg" version="1.1" width="29" height="29" class="moreSvg" viewBox="0 0 768 768">
+            <path fill="#fff" d="M511.5 640.5v-129h129v129h-129zM511.5 448.5v-129h129v129h-129zM319.5 256.5v-129h129v129h-129zM511.5 127.5h129v129h-129v-129zM319.5 448.5v-129h129v129h-129zM127.5 448.5v-129h129v129h-129zM127.5 640.5v-129h129v129h-129zM319.5 640.5v-129h129v129h-129zM127.5 256.5v-129h129v129h-129z">
+
+            </path></svg></a>
+					<div class="dropdown-content dropMenu" id="moreMenu"> <span class="close-slide-menu" id="closeSlideMenu" onclick="macfee_CloseMenuFunction();">×</span>
+						<div class="row">
+							<div class="column">
+								<ul>
+									<li> <a data-navelement="more|myaccount" data-pagesection="top nav" href="https://home.mcafee.com/Secure/MyAccount/DashBoard.aspx?culture=en-us">My Account</a> </li>
+									<li> <a data-navelement="more|redeem" data-pagesection="top nav" href="/en-in/consumer-support/activate-product-key.html">Activate your Retail Card</a> </li>
+									<li> <a data-navelement="more|webadvisor" data-pagesection="top nav" href="/en-in/safe-browser/mcafee-webadvisor.html">Safe Browser</a></li>
+									<li> <a data-navelement="more|gaming" data-pagesection="top nav" href="/en-in/antivirus/gaming.html">Gaming Antivirus</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+var myDropdown = document.getElementById("myDropdown");
+var myDropdownSupport = document.getElementById("myDropdownSupport");
+var arrow1 = document.getElementById("uparrow1");
+var arrow2 = document.getElementById("uparrow2");
+var x = document.getElementById("myTopnav");
+var dropbtnAbout = document.getElementById("dropbtnAbout");
+var dropbtnSupport = document.getElementById("dropbtnSupport");
+var navItem = document.getElementsByClassName("navItem");
+var moreMenu = document.getElementById("moreMenu");
+var navWrap = document.getElementById("navWrap");
+var closeSlideMenu = document.getElementById("closeSlideMenu");
+var loginbtn = document.getElementById("loginbtn");
+var moreIcon = document.getElementById("moreIcon");
+var windowSize = window.outerWidth;
+var windowResize;
+
+function macfee_MoreOpenFunction() {
+	document.getElementById("tnav9").classList.toggle("moreTrans");
+	moreMenu.classList.toggle("menuTrans");
+	if(x.classList.contains('responsive')) {
+		document.getElementById("tnav9").classList.toggle("moreToggle");
+		moreMenu.classList.toggle("dropMenuRes");
+		if(moreMenu.classList.contains("dropMenuRes")) {
+			for(var i = 0; i < navItem.length; i++) {
+				navItem[i].style.display = "none";
+			}
+			dropbtnSupport.style.display = "none";
+			dropbtnAbout.style.display = "none";
+			closeSlideMenu.style.display = "none";
+			loginbtn.style.display = "none";
+		} else {
+			for(var i = 0; i < navItem.length; i++) {
+				navItem[i].style.display = "block";
+			}
+			dropbtnSupport.style.display = "block";
+			dropbtnAbout.style.display = "block";
+			closeSlideMenu.style.display = "block";
+			loginbtn.style.display = "block";
+		}
+	}
+	document.getElementById("moreIconFa").classList.toggle("fa-angle-right");
+	document.getElementById("moreIconFa").classList.toggle("fa-angle-left");
+}
+
+function macfee_CloseMenuFunction() {
+	document.getElementById("tnav9").classList.toggle("moreTrans");
+	moreMenu.classList.toggle("menuTrans");
+	if(x.classList.contains('responsive')) {
+		navWrap.style.display = "block";
+	}
+	myDropdown.classList.remove("dropdownMain");
+	myDropdownSupport.classList.remove("dropdownMain");
+	if(myDropdown.classList.contains("first-dropdown-fixer")) {
+		myDropdown.classList.remove("first-dropdown-fixer");
+	}
+	if(myDropdownSupport.classList.contains("first-dropdown-fixer")) {
+		myDropdownSupport.classList.remove("first-dropdown-fixer");
+	}
+	loginbtn.style.display = "block";
+	moreIcon.style.display = "block";
+}
+
+function resize() {
+	windowResize = window.outerWidth;
+	if(windowSize > 1024) {
+		if(windowResize < 1024) {
+			windowSize = windowResize;
+			moreMenu.classList.remove("menuTrans");
+			if(moreMenu.classList.contains("dropMenuRes")) {
+				moreMenu.classList.remove("dropMenuRes");
+			}
+			if(!x.classList.contains("responsive")) {
+				for(var i = 0; i < navItem.length; i++) {
+					navItem[i].style.display = "none";
+				}
+				dropbtnAbout.style.display = "none";
+				dropbtnSupport.style.display = "none";
+				closeSlideMenu.style.display = "none";
+			} else {
+				for(var i = 0; i < navItem.length; i++) {
+					navItem[i].style.display = "block";
+				}
+				dropbtnAbout.style.display = "block";
+				dropbtnSupport.style.display = "block";
+				closeSlideMenu.style.display = "block";
+				loginbtn.style.display = "block";
+			}
+			if(arrow1.classList.contains("fa-angle-down")) {
+				arrow1.classList.toggle("fa-angle-right");
+			}
+			if(arrow2.classList.contains("fa-angle-down")) {
+				arrow2.classList.toggle("fa-angle-right");
+			}
+			if(myDropdownSupport.classList.contains('dropdownMain')) {
+				myDropdownSupport.classList.remove('dropdownMain');
+				arrow2.classList.toggle("fa-angle-up");
+				arrow2.classList.toggle("fa-angle-down");
+			}
+			if(myDropdown.classList.contains('dropdownMain')) {
+				myDropdown.classList.remove('dropdownMain');
+				arrow1.classList.toggle("fa-angle-up");
+				arrow1.classList.toggle("fa-angle-down");
+			}
+		} 
+	} else {
+		if(windowResize > 1024) {
+			windowSize = windowResize;
+			
+			x.classList.remove('responsive');
+			if(document.getElementById("menuIcon").classList.contains("change")) {
+				document.getElementById("menuIcon").classList.remove("change");
+			}
+			document.getElementById("tnav9").classList.remove("moreToggle");
+			for(var i = 0; i < navItem.length; i++) {
+				navItem[i].style.display = "block";
+			}
+			dropbtnAbout.style.display = "block";
+			dropbtnSupport.style.display = "block";
+			closeSlideMenu.style.display = "block";
+			loginbtn.style.display = "block";
+			if(arrow1.classList.contains("fa-angle-right") || arrow1.classList.contains("fa-angle-left")) {
+				arrow1.classList.remove("fa-angle-right");
+				arrow1.classList.remove("fa-angle-left");
+				arrow1.classList.add("fa-angle-down");
+			}
+			if(arrow2.classList.contains("fa-angle-right") || arrow2.classList.contains("fa-angle-left")) {
+				arrow2.classList.remove("fa-angle-right");
+				arrow2.classList.remove("fa-angle-left");
+				arrow2.classList.add("fa-angle-down");
+			}
+		}
+	}
+}
+window.onresize = resize;
+
+function macfee_MainMenuClick() {
+	document.getElementById("menuIcon").classList.toggle("change");
+	if(arrow1.classList.contains("fa-angle-down")) {
+		arrow1.classList.toggle("fa-angle-down");
+		arrow1.classList.add("fa-angle-right");
+	} else {
+		arrow1.classList.add("fa-angle-right");
+	}
+	if(arrow2.classList.contains("fa-angle-down")) {
+		arrow2.classList.toggle("fa-angle-down");
+		arrow2.classList.add("fa-angle-right");
+	} else {
+		arrow2.classList.add("fa-angle-right");
+	}
+	if(x.className === "topnav") {
+		x.className += " responsive";
+		for(var i = 0; i < navItem.length; i++) {
+			navItem[i].style.display = "block";
+		}
+		dropbtnAbout.style.display = "block";
+		dropbtnSupport.style.display = "block";
+		closeSlideMenu.style.display = "block";
+		loginbtn.style.display = "block";
+		moreIcon.style.display = "block";
+		if(document.getElementById("tnav9").classList.contains("moreToggle")) {
+			document.getElementById("tnav9").classList.remove("moreToggle");
+		}
+	} else {
+		x.className = "topnav";
+		for(var i = 0; i < navItem.length; i++) {
+			navItem[i].style.display = "none";
+		}
+		dropbtnAbout.style.display = "none";
+		dropbtnSupport.style.display = "none";
+		closeSlideMenu.style.display = "none";
+		moreMenu.classList.remove("menuTrans");
+		if(moreMenu.classList.contains("dropMenuRes")) {
+			moreMenu.classList.remove("dropMenuRes");
+		}
+	}
+	if(myDropdown.classList.contains("first-dropdown-fixer")) {
+		myDropdown.classList.remove("first-dropdown-fixer");
+	}
+	if(myDropdownSupport.classList.contains("first-dropdown-fixer")) {
+		myDropdownSupport.classList.remove("first-dropdown-fixer");
+	}
+}
+
+function macfee_DropClick(econtentId) {
+	document.getElementById(econtentId).classList.toggle("dropdownMain");
+	arrow1.parentElement.parentElement.classList.remove("open");
+	arrow2.parentElement.parentElement.classList.remove("open");
+	if(document.getElementById(econtentId).classList.contains("dropdownMain")) {
+		document.getElementById(econtentId).parentElement.classList.add("open");
+	}
+	
+	if(econtentId == "myDropdown") {
+		if(x.classList.contains('responsive')) {
+			document.getElementById(econtentId).classList.toggle("first-dropdown-fixer");
+			arrow1.classList.toggle("fa-angle-right");
+			arrow1.classList.toggle("fa-angle-left");
+			if(myDropdown.classList.contains("dropdownMain")) {
+				for(var i = 0; i < navItem.length; i++) {
+					navItem[i].style.display = "none";
+				}
+				dropbtnSupport.style.display = "none";
+				moreIcon.style.display = "none";
+				loginbtn.style.display = "none";
+			} else {
+				for(var i = 0; i < navItem.length; i++) {
+					navItem[i].style.display = "block";
+				}
+				dropbtnSupport.style.display = "block";
+				moreIcon.style.display = "block";
+				loginbtn.style.display = "block";
+			}
+		} else {
+			arrow1.classList.toggle("fa-angle-up");
+			arrow1.classList.toggle("fa-angle-down");
+		}
+		if(myDropdownSupport.classList.contains('dropdownMain')) {
+			myDropdownSupport.classList.remove('dropdownMain');
+			arrow2.classList.toggle("fa-angle-up");
+			arrow2.classList.toggle("fa-angle-down");
+		}
+	} else {
+		if(x.classList.contains('responsive')) {
+			document.getElementById(econtentId).classList.toggle("first-dropdown-fixer");
+			arrow2.classList.toggle("fa-angle-right");
+			arrow2.classList.toggle("fa-angle-left");
+			if(myDropdownSupport.classList.contains("dropdownMain")) {
+				for(var i = 0; i < navItem.length; i++) {
+					navItem[i].style.display = "none";
+				}
+				dropbtnAbout.style.display = "none";
+				moreIcon.style.display = "none";
+				loginbtn.style.display = "none";
+			} else {
+				for(var i = 0; i < navItem.length; i++) {
+					navItem[i].style.display = "block";
+				}
+				dropbtnAbout.style.display = "block";
+				moreIcon.style.display = "block";
+				loginbtn.style.display = "block";
+			}
+		} else {
+			arrow2.classList.toggle("fa-angle-up");
+			arrow2.classList.toggle("fa-angle-down");
+		}
+		if(myDropdown.classList.contains('dropdownMain')) {
+			myDropdown.classList.remove('dropdownMain');
+			arrow1.classList.toggle("fa-angle-up");
+			arrow1.classList.toggle("fa-angle-down");
+		}
+	}
+}
+
+window.onclick = function(e) {
+	if(e.target.matches('.icon')) {
+		console.log('window button');
+	} else if(!e.target.matches('.dropbtn')) {
+		myDropdownSupport.classList.remove('dropdownMain');
+		myDropdown.classList.remove('dropdownMain');
+		if(!e.target.matches('.dropbtnAbout')) {
+			arrow2.classList.remove("fa-angle-up");
+			arrow2.classList.add("fa-angle-down");
+			arrow2.parentElement.parentElement.classList.remove("open");
+		}
+		if(!e.target.matches('.dropbtnSupport')) {
+			arrow1.classList.remove("fa-angle-up");
+			arrow1.classList.add("fa-angle-down");
+			arrow1.parentElement.parentElement.classList.remove("open");
+		}
+	}
+	if(!e.target.matches('.moreSvg') && !e.target.matches('path')) {
+		moreMenu.classList.remove("menuTrans");
+	}
+}
+</script>
+</html>
